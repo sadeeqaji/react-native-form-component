@@ -6,6 +6,8 @@ interface Props extends TextInputProps {
     textInputStyle?: TextStyle;
     style?: StyleProp<ViewStyle>;
     autoFocus?: boolean;
+    testID?: string;
+    inputTestID?: string;
 }
 export default function PinInput(props: Props): JSX.Element;
 export {};

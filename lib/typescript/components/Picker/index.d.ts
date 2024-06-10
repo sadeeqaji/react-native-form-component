@@ -20,6 +20,7 @@ interface Props {
     itemLabelStyle?: object | object[];
     floatingLabel?: boolean;
     type?: 'dropdown' | 'modal';
+    testID?: string;
 }
 declare function Picker(props: Props): JSX.Element;
 declare namespace Picker {

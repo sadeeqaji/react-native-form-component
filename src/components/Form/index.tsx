@@ -1,6 +1,5 @@
 import React, { Children, useState, ReactNode } from 'react';
 import {
-  KeyboardAvoidingView,
   Platform,
   Pressable,
   Text,
@@ -12,6 +11,7 @@ import {
 
 import { containsError } from '../FormItem';
 import { colors } from '../../colors';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 interface Props {
   children: ReactNode;
@@ -57,7 +57,7 @@ export default function Form(props: Props) {
     if (fieldsWithError.length) {
       console.error(
         'The following fields do not fulfil their conditions:\n' +
-          JSON.stringify(fieldsWithError, null, 2)
+        JSON.stringify(fieldsWithError, null, 2)
       );
       return;
     }
@@ -68,13 +68,7 @@ export default function Form(props: Props) {
   submitForm = () => handleButtonPress();
 
   return (
-    <KeyboardAvoidingView
-      keyboardVerticalOffset={
-        Platform.OS == 'ios' ? props.keyboardVerticalOffset || 50 : undefined
-      }
-      behavior={Platform.OS == 'ios' ? 'padding' : undefined}
-      style={props.style}
-    >
+    <KeyboardAwareScrollView style={props.style}>
       {props.children}
       {!props.hideSubmitButton && (
         <Pressable
@@ -94,7 +88,7 @@ export default function Form(props: Props) {
           </Text>
         </Pressable>
       )}
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
   );
 }
 
